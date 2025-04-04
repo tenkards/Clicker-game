@@ -1,19 +1,62 @@
 #game-container {
-    width: 500px;
-    height: 500px;
-    background-color: lightgray;
-    position: relative;
-  }
-  
-  #target {
-    width: 50px;
-    height: 50px;
-    background-color: red;
-    border-radius: 50%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    cursor: pointer;
-  }
-  
+  width: 500px;
+  height: 500px;
+  background-color: lightgray;
+  position: relative;
+  margin: 20px auto;
+  border: 2px solid #000;
+}
+
+#target {
+  width: 50px;
+  height: 50px;
+  background-color: red;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+}
+
+.bonus {
+  position: absolute;
+  z-index: 10;
+  color: burlywood;
+}
+
+.bomb {
+  position: absolute;
+  z-index: 10;
+  color: green;
+}
+
+/* Button styles */
+#controls {
+  text-align: center;
+  margin-top: 20px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 0 10px;
+}
+
+#start-button {
+  background-color: #4CAF50;
+  color: white;
+}
+
+#end-button {
+  background-color: #f44336;
+  color: white;
+}
+
+#restart-button {
+  background-color: #2196F3;
+  color: white;
+}
