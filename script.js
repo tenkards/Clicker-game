@@ -171,7 +171,7 @@ function startGame() {
   // Clear all existing targets and reset variables
   clearInterval(timer);
   gameContainer.innerHTML = ''; // Remove all targets
-  score = 130;
+  score = 0;
   timeLeft = 30;
   lives = 3; // Reset lives to 3
   updateUI();
