@@ -119,11 +119,15 @@ function startTimer() {
     updateUI();
 
     // Adjust difficulty based on score
-    if (score >= 75) {
+    if (score >= 100) {
       clearInterval(timer); // Clear the current timer
-      interval = 500; // Decrease the interval to make the game even faster
+      interval = 300; // Decrease the interval to make the game even faster
       startTimer(); // Restart the timer with the new interval
-    } else if (score > 50) {
+    } else if (score >= 75) {
+      clearInterval(timer); // Clear the current timer
+      interval = 500; // Decrease the interval to make the game faster
+      startTimer(); // Restart the timer with the new interval
+    } else if (score >= 50) {
       clearInterval(timer); // Clear the current timer
       interval = 700; // Decrease the interval to make the game faster
       startTimer(); // Restart the timer with the new interval
@@ -134,11 +138,14 @@ function startTimer() {
       endGame();
     }
 
-    // Occasionally create bonus or bomb
-    if (Math.random() < 0.15) createBonus(); // 15% chance for bonus
-    if (Math.random() < (score >= 75 ? 0.8 : score > 50 ? 0.6 : 0.4)) createBomb(); // Increase bomb spawn rate
-    createNormalTarget(); // Always create a gold target
-  }, interval);
+  // Occasionally create bonus or bomb
+if (Math.random() < (score >= 100 ? 0.05 : score >= 75 ? 0.10 : score >= 50 ? 0.15 : 0.15)) createBonus(); // Reduce bonus rate by 5% for each tier
+if (Math.random() < (score >= 100 ? 0.9 : score >= 75 ? 0.8 : score >= 50 ? 0.6 : 0.4)) createBomb(); 
+
+// Spawn normal target with reduced probability based on score
+if (Math.random() < (score >= 100 ? 0.45 : score >= 75 ? 0.60 : score >= 50 ? 0.75 : 1.0)) {
+  createNormalTarget(); // Spawn gold target
+}  }, interval);
 }
 
 // Start the game
