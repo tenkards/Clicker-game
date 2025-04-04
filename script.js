@@ -113,9 +113,21 @@ function updateUI() {
 
 // Start the game timer
 function startTimer() {
+  var interval = 1000; // Default interval for the game loop
   timer = setInterval(function () {
     timeLeft--;
     updateUI();
+
+    // Adjust difficulty based on score
+    if (score >= 75) {
+      clearInterval(timer); // Clear the current timer
+      interval = 500; // Decrease the interval to make the game even faster
+      startTimer(); // Restart the timer with the new interval
+    } else if (score > 50) {
+      clearInterval(timer); // Clear the current timer
+      interval = 700; // Decrease the interval to make the game faster
+      startTimer(); // Restart the timer with the new interval
+    }
 
     if (timeLeft <= 0) {
       clearInterval(timer);
@@ -124,9 +136,9 @@ function startTimer() {
 
     // Occasionally create bonus or bomb
     if (Math.random() < 0.15) createBonus(); // 15% chance for bonus
-    if (Math.random() < 0.4) createBomb();  // 40% chance for bomb
+    if (Math.random() < (score >= 75 ? 0.8 : score > 50 ? 0.6 : 0.4)) createBomb(); // Increase bomb spawn rate
     createNormalTarget(); // Always create a gold target
-  }, 1000);
+  }, interval);
 }
 
 // Start the game
