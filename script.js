@@ -2,7 +2,7 @@
 var score = 0;
 var timeLeft = 30; // Game duration in seconds
 var timer;
-var targetSize = 40; // Width and height in pixels
+var targetSize = 50; // Width and height in pixels
 var gameContainer = document.getElementById('game-container');
 var lives = 3; 
 
@@ -70,16 +70,18 @@ function createTemporaryTarget(color, duration, onClick) {
 
 // Create a bonus target (disappears after 2 seconds)
 function createBonus() {
-  createTemporaryTarget('grey', 2000, function () {
+  // Add duration
+  var duration = score >= 130 ? 250 : score >= 100 ? 500 : score >= 75 ? 1000 : score >= 50 ? 1500 : 2000;
+  createTemporaryTarget('grey', duration, function () {
     score += 5;
     timeLeft += 5;
     updateUI();
   });
 }
 
-// Create a bomb target (stays for 3 seconds)
+// Create a bomb target (stays for 4 seconds)
 function createBomb() {
-  createTemporaryTarget('red', 3000, function () {
+  createTemporaryTarget('red', 4000, function () {
     lives--;
     score = Math.max(0, score - 5); // Decrease score by 5
     updateUI();
@@ -116,10 +118,10 @@ function updateUI() {
   livesDisplay.textContent = lives; // Update lives display
 }
 
-// Create a unicorn target (gold, stays for 3 seconds)
+// Create a unicorn target (gold, shoooort time)
 function createUnicorn() {
-  createTemporaryTarget('gold', 1000, function () {
-    timeLeft += 15; // Add 15 seconds to the timer
+  createTemporaryTarget('gold', 500, function () {
+    timeLeft += 25; // Add 25 seconds to the timer
     updateUI();
   });
 }
