@@ -13,12 +13,10 @@ var timerDisplay = document.getElementById('timer');
 // Button elements
 var startButton = document.getElementById('start-button');
 var endButton = document.getElementById('end-button');
-var restartButton = document.getElementById('restart-button');
 
 // Attach event listeners to buttons
-startButton.addEventListener('click', restartGame);
+startButton.addEventListener('click', startGame);
 endButton.addEventListener('click', endGame);
-restartButton.addEventListener('click', restartGame);
 
 // Initialize target styles
 function initializeTarget(targetElement, color) {
@@ -105,7 +103,6 @@ function handleNormalClick() {
   score++;
   timeLeft += 1; // Add 1 second for each click
   updateUI();
-  //createNormalTarget();
 }
 
 // Update the score and timer display
@@ -132,30 +129,28 @@ function startTimer() {
   }, 1000);
 }
 
-// End the game
-function endGame() {
+// Start the game
+function startGame() {
+  // Clear all existing targets and reset variables
   clearInterval(timer);
-  target.style.display = 'none';
-  target.removeEventListener('click', handleNormalClick);
-  alert('Game over! Your score is: ' + score);
-}
-
-// Restart the game
-function restartGame() {
+  gameContainer.innerHTML = ''; // Remove all targets
   score = 0;
   timeLeft = 30;
   updateUI();
+
+  // Initialize the main target
+  initializeTarget(target, 'gold');
   target.addEventListener('click', handleNormalClick);
+
+  // Start the game
   createNormalTarget();
   startTimer();
 }
 
-// Initialize the game
-function initializeGame() {
-  initializeTarget(target, 'gold');
-  target.addEventListener('click', handleNormalClick);
-  updateUI();
+// End the game
+function endGame() {
+  clearInterval(timer);
+  gameContainer.innerHTML = ''; // Remove all targets
+  target.removeEventListener('click', handleNormalClick);
+  alert('Game over! Your score is: ' + score);
 }
-
-// Start the game setup
-initializeGame();
