@@ -71,7 +71,7 @@ function createTemporaryTarget(color, duration, onClick) {
 // Create a bonus target (disappears after 2 seconds)
 function createBonus() {
   // Add duration
-  var duration = score >= 130 ? 250 : score >= 100 ? 500 : score >= 75 ? 1000 : score >= 50 ? 1500 : 2000;
+  var duration = score >= 130 ? 700 : score >= 100 ? 900 : score >= 75 ? 1200 : score >= 50 ? 1500 : 2000;
   createTemporaryTarget('grey', duration, function () {
     score += 5;
     timeLeft += 5;
@@ -120,7 +120,7 @@ function updateUI() {
 
 // Create a unicorn target (gold, shoooort time)
 function createUnicorn() {
-  createTemporaryTarget('gold', 500, function () {
+  createTemporaryTarget('purple', 500, function () {
     timeLeft += 25; // Add 25 seconds to the timer
     updateUI();
   });
@@ -158,12 +158,12 @@ function startTimer() {
     }
 
     // Occasionally create bonus, bomb, or unicorn
-    if (Math.random() < (score >= 130 ? 0.01 : score >= 100 ? 0.05 : score >= 75 ? 0.10 : score >= 50 ? 0.15 : 0.15)) createBonus(); // Reduce bonus rate by 5% for each tier
+    if (Math.random() < (score >= 130 ? 0.08 : score >= 100 ? 0.05 : score >= 75 ? 0.10 : score >= 50 ? 0.15 : 0.15)) createBonus(); // Reduce bonus rate by 5% for each tier
     if (Math.random() < (score >= 130 ? 0.9 : score >= 100 ? 0.9 : score >= 75 ? 0.8 : score >= 50 ? 0.6 : 0.4)) createBomb();
-    if (score >= 130 && Math.random() < 0.005) createUnicorn(); // Spawn unicorn with a 5% chance when score is 130+
+    if (score >= 130 && Math.random() < 0.03) createUnicorn(); // Spawn unicorn with a 5% chance when score is 130+
 
     // Spawn normal target with reduced probability based on score
-    if (Math.random() < (score >= 130 ? 0.4 : score >= 100 ? 0.45 : score >= 75 ? 0.60 : score >= 50 ? 0.75 : 1.0)) {
+    if (Math.random() < (score >= 130 ? 0.7 : score >= 100 ? 0.45 : score >= 75 ? 0.60 : score >= 50 ? 0.75 : 1.0)) {
       createNormalTarget(); // Spawn black target
     }
   }, interval);
@@ -192,5 +192,5 @@ function endGame() {
   clearInterval(timer);
   gameContainer.innerHTML = ''; // Remove all targets
   target.removeEventListener('click', handleNormalClick);
-  alert(`Game over! Your score is: ${score}. Lives remaining: ${lives}`);
+  alert(`Game over! Your score is: ${score}. Bomb Lives remaining: ${lives}`);
 }

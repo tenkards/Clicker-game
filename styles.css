@@ -1,15 +1,41 @@
+/* General styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+h1 {
+  font-size: 24px;
+  margin: 10px 0;
+}
+
+p {
+  font-size: 16px;
+  margin: 5px 0;
+}
+
+/* Game container */
 #game-container {
-  width: 500px;
-  height: 500px;
+  width: 90%;
+  max-width: 400px;
+  height: 90vw;
+  max-height: 400px; 
   background-color: lightgray;
   position: relative;
   margin: 20px auto;
   border: 2px solid #000;
+  border-radius: 10px; 
+  overflow: hidden;
 }
 
+/* Target styles */
 #target {
-  width: 50px;
-  height: 50px;
+  width: 10vw; 
+  max-width: 50px; 
+  height: 10vw;
+  max-height: 50px;
   background-color: red;
   border-radius: 50%;
   position: absolute;
@@ -19,31 +45,25 @@
   cursor: pointer;
 }
 
-.bonus {
+.bonus, .bomb {
   position: absolute;
   z-index: 10;
-  color: burlywood;
-}
-
-.bomb {
-  position: absolute;
-  z-index: 10;
-  color: green;
+  border-radius: 50%;
 }
 
 /* Button styles */
 #controls {
   text-align: center;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 button {
-  padding: 10px 20px;
-  font-size: 16px;
+  padding: 10px 15px;
+  font-size: 14px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin: 0 10px;
+  margin: 5px;
 }
 
 #start-button {
@@ -54,4 +74,26 @@ button {
 #end-button {
   background-color: #f44336;
   color: white;
+}
+
+/* Responsive text */
+#score, #timer, #lives {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 600px) {
+  h1 {
+    font-size: 20px;
+  }
+
+  p {
+    font-size: 14px;
+  }
+
+  button {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
 }
